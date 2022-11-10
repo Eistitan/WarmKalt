@@ -11,11 +11,15 @@ namespace WarmKalt
     internal class Spieler
     {
         private string name;
-        private string vorname;
-        private string zuname;
         private int score;
 
+        public Spieler() { }
 
+        public Spieler(string name, int score)
+        {
+            this.name = name;
+            this.score = score;
+        }
         public void SetName()
         {
             List<string> vornamen = new()
@@ -41,32 +45,41 @@ namespace WarmKalt
             };
 
             Random rand = new Random();
-
             int index = rand.Next(0, (vornamen.Count));
             name = vornamen[index];
-
             index = rand.Next(0, zunamen.Count);
             name = name + zunamen[index];
-            
         }
-        //public void Printname()
-        //{
-        //    Console.WriteLine($"Jetzt spielt {name}.");
-        //}
-
         public string GetName()
         {
             return name;
         }
-
-        public void SetScore(int versuche)
+        public void SetScore(int versuche, List<Spieler> h_score)
         {
             score = versuche;
+            h_score.Add(new Spieler(name, score));
         }
-
         public int GetScore()
         {
             return score;
+        }
+        public void Ausgabe(List<Spieler> h_score)
+        {
+            List<Spieler> sort_list = h_score.OrderBy(x => x.score).ToList(); //OrderByDescending
+            int i = 1;
+            foreach (var item in sort_list)
+            {
+                if (item.score == 1)
+                {
+                    Console.WriteLine($"Platz {i}. {item.name} mit {item.score} Versuch.\n ");
+                    i++;
+                }
+                else
+                {
+                    Console.WriteLine($"Platz {i}. {item.name} mit {item.score} Versuchen.\n ");
+                    i++;
+                }
+            }
         }
     }
 }

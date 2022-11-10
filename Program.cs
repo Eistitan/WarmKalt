@@ -48,13 +48,12 @@ namespace WarmKalt
             return mode;
         }
 
-        static void Game() //mode wird aus der Methode Menu erstellt
+        static void Game()
         {
             Spieler sp1 = new Spieler();
-            HiScore hs1 = new HiScore();
-            List<string> h_score = new List<string>(); //??
-            List<string> scoreL = new List<string>(); //??
-            List<string> nameL = new List<string>(); //??
+
+            List<Spieler> h_score = new List<Spieler>(); //??
+
 
             int rnd_max = Menu();
             bool spiel = true;
@@ -90,15 +89,16 @@ namespace WarmKalt
 
                     if (gegeben1 == gesucht)
                     {
+                        sp1.SetScore(versuche, h_score);
                         spiel = Ende();
                         durchlauf = false;
                     }
-                } while (durchlauf == true); 
-                hs1.Eintrag(name,versuche, h_score);
+                } while (durchlauf == true);
 
+                //--------------------------------------------------------
             } while (spiel == true);
             Console.WriteLine("Highscore Liste\n");
-            hs1.Ausgabe(h_score);
+            sp1.Ausgabe(h_score);
 
         }
 
@@ -187,6 +187,7 @@ namespace WarmKalt
             string text;
             Console.Write("Spiel beenden? y/n "); //??
             text = Console.ReadLine().ToLower();
+            Console.WriteLine(" ");
             if (text == "y" || text == "ja" || text == "yes" || text == "j")
             {
                 Console.WriteLine("Schönen Tag noch.\n");
@@ -200,11 +201,11 @@ namespace WarmKalt
             return result;
         }
 
-        //In Main Start() -- Auswahl Methode, Name Methoden (generiert Namen) 
-        //Hard Mode - Generator erhöhen und die CW anpassen
-        //Bestenliste mit Index LIST Name und LIST Score
-        //Listen Sortieren nach Score absteigend
-        //Name eingeben vor dem Start jeder Runde
+        //In Main Start() -- Auswahl Methode, Name Methoden (generiert Namen) v
+        //Hard Mode - Generator erhöhen und die CW anpassen v
+        //Bestenliste mit Index LIST Name und LIST Score x
+        //Listen Sortieren nach Score absteigend v
+        //Name eingeben vor dem Start jeder Runde v
         //
 
     }
