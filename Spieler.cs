@@ -13,14 +13,17 @@ namespace WarmKalt
         private string name;
         private int score;
 
-        public Spieler() { }
+        public Spieler() //Der Name wird automatisch beim Erstellen des Objekts erzeugt
+        {
+            this.name=SetName(); 
+        }
 
-        public Spieler(string name, int score)
+        public Spieler(string name, int score) //Konstruktorüberladung fürs Befüllen der Liste benötigt
         {
             this.name = name;
             this.score = score;
         }
-        public void SetName()
+        public string SetName() //Erzeugt Namen der Spieler kopiert aus anderem Spiel.
         {
             List<string> vornamen = new()
             {
@@ -49,12 +52,13 @@ namespace WarmKalt
             name = vornamen[index];
             index = rand.Next(0, zunamen.Count);
             name = name + zunamen[index];
+            return name; 
         }
-        public string GetName()
+        public string GetName() //Zeigt den Namen
         {
             return name;
         }
-        public void SetScore(int versuche, List<Spieler> h_score)
+        public void SetScore(int versuche, List<Spieler> h_score) // Befüllt die Liste mit dem Namen und dem Score
         {
             score = versuche;
             h_score.Add(new Spieler(name, score));
@@ -63,9 +67,9 @@ namespace WarmKalt
         {
             return score;
         }
-        public void Ausgabe(List<Spieler> h_score)
+        public static void Ausgabe(List<Spieler> h_score) //Gibt die Liste mit Highscore aus
         {
-            List<Spieler> sort_list = h_score.OrderBy(x => x.score).ToList(); //OrderByDescending
+            List<Spieler> sort_list = h_score.OrderBy(x => x.score).ToList(); //erstellt eine neue sortierte Liste, sortiert nach score
             int i = 1;
             foreach (var item in sort_list)
             {

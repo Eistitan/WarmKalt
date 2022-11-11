@@ -9,8 +9,7 @@ namespace WarmKalt
         {
             Game();
         }
-
-        static int Menu()
+        static int Menu() //Auswahl des Modes
         {
             int mode = 0;
             bool check;
@@ -26,14 +25,12 @@ namespace WarmKalt
                         mode = 100;
                         Console.WriteLine("Easy Mode mit Highscore gestartet.\n");
                         check = true;
-
                         break;
                     case "h":
                     case "hard":
                         mode = 1000;
                         Console.WriteLine("Hard Mode mit Highscore gestartet.\n");
                         check = true;
-
                         break;
                     default:
                         Console.WriteLine("Falsch! h oder e eingeben.\n");
@@ -45,17 +42,15 @@ namespace WarmKalt
         }
         static void Game()
         {
-            Spieler sp1 = new Spieler();
-            List<Spieler> h_score = new List<Spieler>(); 
+
+            List<Spieler> h_score = new List<Spieler>();
 
             int rnd_max = Menu();
             bool spiel = true;
-            string name;
             do    //ein Spiel
             {
-                sp1.SetName();
-                name = sp1.GetName(); //Kann durch ReadLine erstetzt werden, damit der Spieler den Namen selbst eingibt.
-                Console.WriteLine($"Jetzt spielt {name}.");
+                Spieler sp1 = new Spieler();
+                Console.WriteLine($"Jetzt spielt {sp1.GetName()}.");
                 int versuche = 0;
                 int gegeben1 = 0;
                 int gegeben2 = 0;
@@ -86,18 +81,16 @@ namespace WarmKalt
                 } while (durchlauf == true);
             } while (spiel == true);
             Console.WriteLine("Highscore Liste\n");
-            sp1.Ausgabe(h_score);
+            Spieler.Ausgabe(h_score);
         }
-
-        static int Generator(int rndmax) 
+        static int Generator(int rndmax)
         {
             int rnd_max = rndmax + 1;
             Random ra = new Random();
             int wert = ra.Next(1, rnd_max);
             return wert;
         }
-
-        static int Eingabe(int rndmax) 
+        static int Eingabe(int rndmax) //Eingabe der Zahl
         {
             int u_zahl;
             bool check;
@@ -115,7 +108,7 @@ namespace WarmKalt
             } while (!check);
             return u_zahl;
         }
-        static int Abgleich_start(int gesucht, int gegeben, int versuche)
+        static int Abgleich_start(int gesucht, int gegeben, int versuche) //Der erste Abgleich
         {
             versuche++;
             if (gesucht == gegeben)
@@ -124,7 +117,7 @@ namespace WarmKalt
                 Console.WriteLine("Nein, suchen Sie weiter.");
             return versuche;
         }
-        static int Abgleich_next(int gesucht, int gegeben1, int gegeben2, int versuche) 
+        static int Abgleich_next(int gesucht, int gegeben1, int gegeben2, int versuche) //Die nachfolgende Abgleiche
         {
             int einheit1 = 0;
             int einheit2 = 0;
@@ -165,13 +158,11 @@ namespace WarmKalt
             }
             return versuche;
         }
-
         static bool Ende()
         {
             bool result = true;
-            string text;
-            Console.Write("Spiel beenden? y/n "); 
-            text = Console.ReadLine().ToLower();
+            Console.Write("Spiel beenden? y/n ");
+            string text = Console.ReadLine().ToLower();
             Console.WriteLine(" ");
             if (text == "y" || text == "ja" || text == "yes" || text == "j")
             {
@@ -185,13 +176,5 @@ namespace WarmKalt
             }
             return result;
         }
-
-        //In Main Start() -- Auswahl Methode, Name Methoden (generiert Namen) v
-        //Hard Mode - Generator erhöhen und die CW anpassen v
-        //Bestenliste mit Index LIST Name und LIST Score x
-        //Listen Sortieren nach Score absteigend v
-        //Name eingeben vor dem Start jeder Runde v
-        //
-
     }
 }
