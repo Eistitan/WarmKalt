@@ -7,12 +7,9 @@ namespace WarmKalt
     {
         static void Main(string[] args)
         {
-            int siege = 0;
-
-            //Easy();
             Game();
-
         }
+
         static int Menu()
         {
             int mode = 0;
@@ -43,17 +40,13 @@ namespace WarmKalt
                         check = false;
                         break;
                 }
-
             } while (!check);
             return mode;
         }
-
         static void Game()
         {
             Spieler sp1 = new Spieler();
-
-            List<Spieler> h_score = new List<Spieler>(); //??
-
+            List<Spieler> h_score = new List<Spieler>(); 
 
             int rnd_max = Menu();
             bool spiel = true;
@@ -76,7 +69,6 @@ namespace WarmKalt
 
                         gegeben1 = Eingabe(rnd_max);
                         versuche = Abgleich_start(gesucht, gegeben1, versuche);
-                        //Console.WriteLine($"Versuche {versuche}");
                     }
                     else
                     {
@@ -84,7 +76,6 @@ namespace WarmKalt
                         gegeben2 = gegeben1;
                         gegeben1 = Eingabe(rnd_max);
                         versuche = Abgleich_next(gesucht, gegeben1, gegeben2, versuche);
-                        //Console.WriteLine($"Versuche {versuche}");
                     }
 
                     if (gegeben1 == gesucht)
@@ -94,15 +85,12 @@ namespace WarmKalt
                         durchlauf = false;
                     }
                 } while (durchlauf == true);
-
-                //--------------------------------------------------------
             } while (spiel == true);
             Console.WriteLine("Highscore Liste\n");
             sp1.Ausgabe(h_score);
-
         }
 
-        static int Generator(int rndmax) //Generator anpassen v
+        static int Generator(int rndmax) 
         {
             int rnd_max = rndmax + 1;
             Random ra = new Random();
@@ -110,7 +98,7 @@ namespace WarmKalt
             return wert;
         }
 
-        static int Eingabe(int rndmax) //Eingabe für 2 Fälle anpassen. 100 und 1000 v
+        static int Eingabe(int rndmax) 
         {
             int u_zahl;
             bool check;
@@ -126,7 +114,6 @@ namespace WarmKalt
                     check = false;
                 }
             } while (!check);
-
             return u_zahl;
         }
         static int Abgleich_start(int gesucht, int gegeben, int versuche)
@@ -137,9 +124,8 @@ namespace WarmKalt
             else
                 Console.WriteLine("Nein, suchen Sie weiter.");
             return versuche;
-
         }
-        static int Abgleich_next(int gesucht, int gegeben1, int gegeben2, int versuche) //muss überarbeitet werden
+        static int Abgleich_next(int gesucht, int gegeben1, int gegeben2, int versuche) 
         {
             int einheit1 = 0;
             int einheit2 = 0;
@@ -185,7 +171,7 @@ namespace WarmKalt
         {
             bool result = true;
             string text;
-            Console.Write("Spiel beenden? y/n "); //??
+            Console.Write("Spiel beenden? y/n "); 
             text = Console.ReadLine().ToLower();
             Console.WriteLine(" ");
             if (text == "y" || text == "ja" || text == "yes" || text == "j")
