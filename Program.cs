@@ -54,7 +54,7 @@ namespace WarmKalt
             do    //ein Spiel
             {
                 sp1.SetName();
-                name = sp1.GetName();
+                name = sp1.GetName(); //Kann durch ReadLine erstetzt werden, damit der Spieler den Namen selbst eingibt.
                 Console.WriteLine($"Jetzt spielt {name}.");
                 int versuche = 0;
                 int gegeben1 = 0;
@@ -72,7 +72,6 @@ namespace WarmKalt
                     }
                     else
                     {
-                        //Console.WriteLine(gesucht); //Test
                         gegeben2 = gegeben1;
                         gegeben1 = Eingabe(rnd_max);
                         versuche = Abgleich_next(gesucht, gegeben1, gegeben2, versuche);

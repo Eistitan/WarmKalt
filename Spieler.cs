@@ -59,7 +59,7 @@ namespace WarmKalt
             score = versuche;
             h_score.Add(new Spieler(name, score));
         }
-        public int GetScore()
+        public int GetScore() //Test
         {
             return score;
         }
