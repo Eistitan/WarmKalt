@@ -65,7 +65,7 @@ namespace WarmKalt
                 {
                     if (versuche == 0)
                     {
-                        Console.WriteLine(gesucht); //Test
+                        Console.WriteLine($"gesuchte Zahl: {gesucht}"); //zum testen
 
                         gegeben1 = Eingabe(rnd_max);
                         versuche = Abgleich_start(gesucht, gegeben1, versuche);
